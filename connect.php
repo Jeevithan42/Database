@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 $Name = $_POST['Name'];
@@ -11,7 +8,8 @@ $file = $_POST['myfile'];
 
 //Connect to database Yippee!!!!!
 
-$connect = new mysqli('localhost', 'SAC',  'CLUBHUB_24', 'clubhub');
+$connect = new mysqli('localhost', 'root',  '', 'clubhub','3306');
+
 
 if($connect -> connect_error){
     $error_type = $connect->connect_error;
@@ -21,16 +19,20 @@ if($connect -> connect_error){
 }
 
 else{
-$smth = $connect->prepare("insert into customers(Name, Description, Meeting, email, image) values (?, ?, ?, ?, ?)");
-$smth->bind_param("ssssb", $Name, $Description, $Meeting, $email, $myfile);
+
+$smth = $connect->prepare('INSERT INTO ClubRegistry(Name, Description, Meeting, Email, Image) values (?, ?, ?, ?, ?)');
+
+//This works in PHP 8.1 and later
+//$smth->execute([$Name, $Description, $Meeting, $email, $file]);
+
+$smth->bind_param("sssss", $Name, $Description, $Meeting, $email, $file);
+$smth->execute();
 echo '<script>alert("Entry added sucessfully! Yippee! I like men!");</script>';
 $smth->close();
 $connect->close();
 die("yay?");
 
-}
+};
 
 
 ?>
-
-
