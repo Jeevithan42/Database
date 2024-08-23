@@ -10,7 +10,7 @@ if($connect -> connect_error){
 }
 
 
-$sql = 'SELECT name, description, meeting, image FROM ClubRegistry';
+$sql = 'SELECT name, description, meeting, image, keyword FROM ClubRegistry';
 $result = mysqli_query($connect, $sql) or die( mysqli_error($connect));
 
 
@@ -47,7 +47,8 @@ mysqli_close($connect);
                           <h6 class="club_text"> Name: <?php echo $club['name']; ?></h6>
                           <h6 class="'club_text">Description: <?php echo $club['description']; ?></h6>
                           <h6 class="'club_text">Meeting: <?php echo $club['meeting']; ?></h6>
-                          <h6 class="'club_text">Image: <?php echo $club['image']; ?></h6>
+                          <h6 class="'club_text">Keyword: <?php echo $club['keyword']; ?></h6>
+                          <img src="data:image/jpeg;base64,<?php base64_encode($club['image']); ?>"/>
                       </div>
                   </div>
               </div>

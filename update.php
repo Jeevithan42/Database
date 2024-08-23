@@ -8,7 +8,6 @@
 <body>
 
     <form action="updateconnect.php" method="post" class="submission">
-      <h3>idk</h3>
       <br>
       <h5>*Required</h5>
       <br>
